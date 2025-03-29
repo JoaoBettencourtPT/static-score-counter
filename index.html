@@ -8,31 +8,44 @@
 </head>
 
 <body>
-  <h1>Google Sheets Data</h1>
-  <table id="sheet-data" border="1">
-    <thead>
-      <tr>
-        <!-- Column headers will go here -->
-      </tr>
-    </thead>
-    <tbody>
-      <!-- Data rows will go here -->
-    </tbody>
-  </table>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desempenho diário</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        .big-number {
+            font-size: 100px; /* Set the number size to be very large */
+            font-weight: bold;
+            color: #3498db; /* Optional: change text color */
+        }
+    </style>
+</head>
+<body>
+    <h1>Desempenho diário</h1>
+    <div class="big-number">
+        1234567890
+    </div>
+</body>
+</html>
+
 
   <script>
 
     fetchData = () => {
-      // URL of the public Google Sheets CSV export
-      const sheetURL = 'https://docs.google.com/spreadsheets/d/1bbwIfR6ixfS8DQPY98o01-VfgUCZtrxGM8xKCMt71yA/edit?gid=471366586#gid=471366586';
 
-      // Function to fetch CSV data and display in the table
-      const proxyURL = 'https://cors-anywhere.herokuapp.com/';
+      // URL of the public Google Sheets CSV export
+      const sheetURL = 'https://cors-anywhere.herokuapp.com/https://docs.google.com/spreadsheets/d/1bbwIfR6ixfS8DQPY98o01-VfgUCZtrxGM8xKCMt71yA/edit?gid=471366586#gid=471366586';
 
       $.ajax({
         type: "GET",
         url: sheetURL,
-        dataType: "text",
         success: function (res) {
           console.log(res);
 
@@ -41,6 +54,7 @@
 
     }
 
+    window.googleDocCallback = function () { return true; };
     window.onload = fetchData;
 
 
