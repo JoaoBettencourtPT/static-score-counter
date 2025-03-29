@@ -5,38 +5,95 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Google Sheets Data</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
 
 <body>
   <!DOCTYPE html>
-<html lang="en">
-<head>
+  <html lang="en">
+
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Desempenho diário</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 50px;
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding: 50px;
+      }
+
+      .big-number {
+        font-size: 100px;
+        /* Set the number size to be very large */
+        font-weight: bold;
+        color: #3498db;
+        display: none;
+        /* Optional: change text color */
+      }
+
+      /* Loading Screen Style */
+      #loading-screen {
+        position: fixed;
+        /* Fixed to cover the full screen */
+        top: 135px;
+        left: 43.5%;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.7);
+        /* Semi-transparent background */
+        display: flex;
+        justify-content: center;
+        /* Center horizontally */
+        align-items: center;
+        /* Center vertically */
+        z-index: 9999;
+        display: block;
+        /* Initially hidden */
+      }
+
+      /* Spinner Style */
+      #loading-spinner {
+        border: 10px solid #f3f3f3;
+        border-top: 10px solid #3498db;
+        border-radius: 50%;
+        width: 100px;
+        height: 100px;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
         }
-        .big-number {
-            font-size: 100px; /* Set the number size to be very large */
-            font-weight: bold;
-            color: #3498db; /* Optional: change text color */
+
+        100% {
+          transform: rotate(360deg);
         }
+      }
     </style>
-</head>
-<body>
+  </head>
+
+  <body>
+
+    </div>
     <h1>Desempenho diário</h1>
     <div class="big-number" id="score">
-        0
+      0
+
     </div>
-</body>
-</html>
+    <div class="big-number" id="loading-screen">
+      <div id="loading-spinner"></div>
+    </div>
+  </body>
+
+  </html>
 
 
   <script>
+    
+
     const correctAnswers = ['a', 'a', 'c', 'd', 'a', 'b', 'a'];
     let score = 0;
 
@@ -51,9 +108,11 @@
         mode: 'cors',
         contentType: 'text',
         success: function (res) {
+          $('#loading-screen').hide();
+          $('#score').show();
           console.log(res);
-          
-          const lastSubmission = res.values[res.values.length -1];
+
+          const lastSubmission = res.values[res.values.length - 1];
           validateForm(lastSubmission)
         }
       })
@@ -62,13 +121,13 @@
 
     validateForm = (answers) => {
       console.log(answers);
-      
+
       answers.forEach((answer, index) => {
         answer.charAt(0);
         if (answer.charAt(0) === correctAnswers[index]) {
           score++;
         }
-        
+
       });
 
       console.log(score);
@@ -81,8 +140,6 @@
 
 
   </script>
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </body>
 
 </html>
