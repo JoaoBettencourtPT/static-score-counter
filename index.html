@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Sheets Data</title>
+</head>
+
+<body>
+  <h1>Google Sheets Data</h1>
+  <table id="sheet-data" border="1">
+    <thead>
+      <tr>
+        <!-- Column headers will go here -->
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Data rows will go here -->
+    </tbody>
+  </table>
+
+  <script>
+
+    fetchData = () => {
+      // URL of the public Google Sheets CSV export
+      const sheetURL = 'https://docs.google.com/spreadsheets/d/1bbwIfR6ixfS8DQPY98o01-VfgUCZtrxGM8xKCMt71yA/edit?gid=471366586#gid=471366586';
+
+      // Function to fetch CSV data and display in the table
+      const proxyURL = 'https://cors-anywhere.herokuapp.com/';
+
+      $.ajax({
+        type: "GET",
+        url: sheetURL,
+        dataType: "text",
+        success: function (res) {
+          console.log(res);
+
+        }
+      })
+
+    }
+
+    window.onload = fetchData;
+
+
+  </script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</body>
+
+</html>
