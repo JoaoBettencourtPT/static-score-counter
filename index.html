@@ -43,7 +43,7 @@
     fetchData = () => {
 
       // URL of the public Google Sheets CSV export
-      const sheetURL = 'https://sheets.googleapis.com/v4/spreadsheets/1bbwIfR6ixfS8DQPY98o01-VfgUCZtrxGM8xKCMt71yA/values/sheet1!A1:D10?key=AIzaSyC8vWajv1BTSBCersbIw4AN4oGKqH12ifw';
+      const sheetURL = 'https://sheets.googleapis.com/v4/spreadsheets/1bbwIfR6ixfS8DQPY98o01-VfgUCZtrxGM8xKCMt71yA/values/sheet2?key=AIzaSyC8vWajv1BTSBCersbIw4AN4oGKqH12ifw';
 
       $.ajax({
         type: "GET",
@@ -51,6 +51,8 @@
         mode: 'cors',
         contentType: 'text',
         success: function (res) {
+          console.log(res);
+          
           const lastSubmission = res.values[res.values.length -1];
           validateForm(lastSubmission)
         }
