@@ -41,11 +41,13 @@
     fetchData = () => {
 
       // URL of the public Google Sheets CSV export
-      const sheetURL = 'https://cors-anywhere.herokuapp.com/https://docs.google.com/spreadsheets/d/1bbwIfR6ixfS8DQPY98o01-VfgUCZtrxGM8xKCMt71yA/edit?gid=471366586#gid=471366586';
+      const sheetURL = 'https://sheets.googleapis.com/v4/spreadsheets/1bbwIfR6ixfS8DQPY98o01-VfgUCZtrxGM8xKCMt71yA?key=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';
 
       $.ajax({
         type: "GET",
         url: sheetURL,
+        mode: 'cors',
+        contentType: 'text',
         success: function (res) {
           console.log(res);
 
